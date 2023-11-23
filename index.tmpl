@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+        <style>
+            td {
+                text-align: center
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            {{range .}}
+            <tr>
+                {{range .}}
+                    <td>{{.}}</td>
+                {{end}}
+            </tr>
+            {{end}}
+        </table>
+    </body>
+    <script>
+    function toggle(e, date, i) {
+        let data = new FormData()
+        data.append("date", date)
+        data.append("i", i)
+        data.append("val", e.checked)
+        fetch("/set", {body: data, method:"post"}).then(()=>window.location.reload())
+    }
+    </script>
+</html>
